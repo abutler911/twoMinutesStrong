@@ -8,18 +8,18 @@ body {
 
 /* Header Styling */
 .app-title {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   letter-spacing: 1px;
-  color: #ffcc00; /* Bright Yellow for High Visibility */
+  color: #ffcc00;
   text-shadow: 2px 2px 10px rgba(255, 204, 0, 0.8);
   margin-bottom: 5px;
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-style: italic;
-  color: #ff9900; /* Energizing Orange */
+  color: #ff9900;
   text-shadow: 1px 1px 5px rgba(255, 153, 0, 0.7);
   margin-bottom: 10px;
 }
