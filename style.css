@@ -25,11 +25,11 @@ body {
 }
 
 .total-time-text {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.3);
-  padding: 8px 12px;
+  padding: 8px;
   border-radius: 8px;
   display: inline-block;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
@@ -153,6 +153,32 @@ h3 {
   font-size: 0.7rem;
   color: #ffcc00;
   text-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
+}
+
+/* Motivational Quote Styling */
+.motivational-quote {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #ffcc00; /* Bright yellow for emphasis */
+  text-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
+}
+
+/* Quote Button */
+.quote-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.quote-btn:hover {
+  background-color: #0056b3;
 }
 
 /* Responsive Design */
