@@ -24,15 +24,27 @@ body {
   margin-bottom: 10px;
 }
 
-.total-time-text {
+/* Position Total Time in the Bottom-Right of Header */
+.total-time-container {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
   font-size: 0.9rem;
+  color: #ccc;
+  opacity: 0.8;
+  text-align: right;
+}
+
+/* Style for the Time Display */
+.total-time-text {
+  margin: 0;
   font-weight: bold;
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 8px;
+  font-size: 0.85rem;
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
   border-radius: 8px;
-  display: inline-block;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 h1 {
@@ -71,6 +83,8 @@ h3 {
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
+  position: relative;
+  padding-bottom: 30px;
 }
 
 /* Grid Layout */
@@ -127,6 +141,7 @@ h3 {
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
+  border: 2px solid white;
 }
 
 /* Footer Styling */
