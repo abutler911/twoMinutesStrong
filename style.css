@@ -24,15 +24,17 @@ body {
   margin-bottom: 10px;
 }
 
-/* Position Total Time in the Bottom-Right of Header */
+/* New Flexbox-Based Total Time Positioning */
 .total-time-container {
-  position: absolute;
-  bottom: 10px;
-  right: 15px;
+  align-self: flex-end; /* Moves it to the bottom right */
+  margin-top: auto; /* Pushes it to the bottom */
+  padding: 5px 10px;
   font-size: 0.9rem;
-  color: #ccc;
-  opacity: 0.8;
-  text-align: right;
+  font-weight: bold;
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 /* Style for the Time Display */
@@ -84,11 +86,12 @@ h3 {
   font-weight: bold;
   text-align: center;
   position: relative;
-  padding-bottom: 30px;
-  min-height: 70px;
+  padding: 20px;
+  min-height: 100px; /* Ensure enough height for proper spacing */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; /* Center content */
 }
 
 /* Grid Layout */
@@ -174,41 +177,14 @@ h3 {
   text-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
 }
 
-/* Motivational Quote Styling */
-.motivational-quote {
-  font-size: 1.1rem;
-  font-style: italic;
-  color: #ffcc00; /* Bright yellow for emphasis */
-  text-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
-}
-
-/* Quote Button */
-.quote-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
-  transition: 0.3s ease-in-out;
-}
-
-.quote-btn:hover {
-  background-color: #0056b3;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(3, 1fr);
   }
   .total-time-container {
-    bottom: 5px;
-    right: 10px;
     font-size: 0.8rem;
+    padding: 4px 8px;
   }
 }
 
@@ -216,10 +192,8 @@ h3 {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .total-time-container {
-    bottom: 5px;
-    right: 5px;
     font-size: 0.75rem;
+    padding: 3px 6px;
   }
 }
