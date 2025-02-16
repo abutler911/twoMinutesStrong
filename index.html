@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>30-Day Plank Challenge</title>
+    <title>Two Minutes Strong!</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -22,9 +22,15 @@
         <div class="col-md-8 offset-md-2">
           <div class="card">
             <div class="card-header">
-              <h1>Two Minutes Strong!</h1>
-              <h3>3-Day Plank Challenge</h3>
+              <h1 class="app-title">🔥 Two Minutes Strong! 🔥</h1>
+              <h3 class="subtitle">
+                Challenge Your Core, Build Mental Toughness 💪
+              </h3>
+              <p class="total-time-text">
+                Total Plank Time: <strong id="total-time">0</strong> minutes
+              </p>
             </div>
+
             <div class="card-body">
               <div class="grid-container" id="calendar-grid"></div>
             </div>
@@ -32,6 +38,18 @@
         </div>
       </div>
     </div>
+    <footer class="footer">
+      <p id="footer-text">
+        © <span id="year"></span> Mr. Gray Enterprises, Inc. | All Rights
+        Reserved
+      </p>
+      <p>💪 Stay Strong. Stay Consistent. Keep Planking! 💪</p>
+    </footer>
+
+    <script>
+      // Automatically update the copyright year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 
     <script src="script.js"></script>
   </body>

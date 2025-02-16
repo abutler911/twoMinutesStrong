@@ -1,4 +1,5 @@
 const calendarGrid = document.getElementById("calendar-grid");
+const totalTimeDisplay = document.getElementById("total-time");
 const today = new Date();
 const plankedDays = JSON.parse(localStorage.getItem("plankedDays")) || {};
 
@@ -17,6 +18,12 @@ const monthNames = [
   "November",
   "December",
 ];
+
+// Function to calculate total plank time
+function calculateTotalTime() {
+  const totalMinutes = Object.keys(plankedDays).length * 2;
+  totalTimeDisplay.textContent = totalMinutes;
+}
 
 // Function to generate the calendar grid
 function generateCalendar() {
@@ -67,7 +74,9 @@ function generateCalendar() {
       } else {
         delete plankedDays[dateKey];
       }
+
       localStorage.setItem("plankedDays", JSON.stringify(plankedDays));
+      calculateTotalTime();
     });
 
     calendarGrid.appendChild(gridItem);
@@ -75,3 +84,4 @@ function generateCalendar() {
 }
 
 generateCalendar();
+calculateTotalTime();
