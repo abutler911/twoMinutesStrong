@@ -85,6 +85,10 @@ h3 {
   text-align: center;
   position: relative;
   padding-bottom: 30px;
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Grid Layout */
@@ -201,10 +205,21 @@ h3 {
   .grid-container {
     grid-template-columns: repeat(3, 1fr);
   }
+  .total-time-container {
+    bottom: 5px;
+    right: 10px;
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .total-time-container {
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.75rem;
   }
 }
