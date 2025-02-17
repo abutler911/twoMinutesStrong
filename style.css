@@ -69,7 +69,15 @@ h3 {
 .container {
   margin-top: 30px;
 }
-
+#enable-notifications {
+  font-size: 0.8rem;
+  color: #000;
+  border-radius: 20px;
+  padding: 8px;
+  background-color: #ffcc00;
+  border: none;
+  cursor: pointer;
+}
 /* Card Styling */
 .card {
   border-radius: 12px;

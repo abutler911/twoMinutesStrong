@@ -2,7 +2,7 @@ const calendarGrid = document.getElementById("calendar-grid");
 const totalTimeDisplay = document.getElementById("total-time");
 
 // Set a fixed start date: February 16, 2025
-const startDate = new Date(2025, 1, 16); // Month index starts from 0, so 1 = February
+const startDate = new Date(2025, 1, 16);
 
 const plankedDays = JSON.parse(localStorage.getItem("plankedDays")) || {};
 
@@ -22,21 +22,30 @@ const monthNames = [
   "December",
 ];
 
+// Function to request notification permission (Only runs on button click)
 function requestNotificationPermission() {
   if ("Notification" in window) {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         console.log("Notifications enabled!");
+        alert("Notifications are enabled! You will get daily plank reminders.");
+        scheduleDailyReminder();
       } else {
         console.log("Notifications denied!");
+        alert("You need to enable notifications for reminders.");
       }
     });
   } else {
     console.log("This browser does not support notifications.");
+    alert("Your browser does not support notifications.");
   }
 }
 
-requestNotificationPermission();
+// Attach event to button (Prevents errors if button doesn't exist)
+const notificationButton = document.getElementById("enable-notifications");
+if (notificationButton) {
+  notificationButton.addEventListener("click", requestNotificationPermission);
+}
 
 // Function to calculate total plank time
 function calculateTotalTime() {
@@ -50,7 +59,7 @@ function generateCalendar() {
 
   for (let i = 0; i < 30; i++) {
     const currentDate = new Date(startDate);
-    currentDate.setDate(startDate.getDate() + i); // Increment by days
+    currentDate.setDate(startDate.getDate() + i);
 
     const dayNumber = currentDate.getDate();
     const monthName = monthNames[currentDate.getMonth()];
@@ -100,6 +109,7 @@ function generateCalendar() {
   }
 }
 
+// Function to send a plank reminder
 function sendPlankReminder() {
   if (Notification.permission === "granted") {
     const today = new Date();
@@ -116,7 +126,25 @@ function sendPlankReminder() {
   }
 }
 
-setTimeout(sendPlankReminder, 86400000);
+// Function to schedule a daily notification (Runs at 9 AM)
+function scheduleDailyReminder() {
+  const now = new Date();
+  const nextReminder = new Date();
 
+  nextReminder.setHours(9, 0, 0, 0);
+
+  if (now > nextReminder) {
+    nextReminder.setDate(nextReminder.getDate() + 1);
+  }
+
+  const timeUntilNextReminder = nextReminder - now;
+
+  setTimeout(() => {
+    sendPlankReminder();
+    setInterval(sendPlankReminder, 86400000);
+  }, timeUntilNextReminder);
+}
+
+// Generate the calendar
 generateCalendar();
 calculateTotalTime();
