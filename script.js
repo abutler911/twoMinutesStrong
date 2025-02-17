@@ -1,6 +1,9 @@
 const calendarGrid = document.getElementById("calendar-grid");
 const totalTimeDisplay = document.getElementById("total-time");
-const today = new Date();
+
+// Set a fixed start date: February 16, 2025
+const startDate = new Date(2025, 1, 16); // Month index starts from 0, so 1 = February
+
 const plankedDays = JSON.parse(localStorage.getItem("plankedDays")) || {};
 
 // Array of month names
@@ -30,11 +33,9 @@ function generateCalendar() {
   let currentMonth = "";
 
   for (let i = 0; i < 30; i++) {
-    const currentDate = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() + i
-    );
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i); // Increment by days
+
     const dayNumber = currentDate.getDate();
     const monthName = monthNames[currentDate.getMonth()];
     const dateKey = `${currentDate.getFullYear()}-${
@@ -55,7 +56,7 @@ function generateCalendar() {
     gridItem.classList.add("grid-item");
     gridItem.innerHTML = `<strong>${dayNumber}</strong>`;
 
-    // Highlight current day
+    // Highlight the start day (Feb 16)
     if (i === 0) {
       gridItem.classList.add("current-day");
     }
