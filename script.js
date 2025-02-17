@@ -22,6 +22,22 @@ const monthNames = [
   "December",
 ];
 
+function requestNotificationPermission() {
+  if ("Notification" in window) {
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        console.log("Notifications enabled!");
+      } else {
+        console.log("Notifications denied!");
+      }
+    });
+  } else {
+    console.log("This browser does not support notifications.");
+  }
+}
+
+requestNotificationPermission();
+
 // Function to calculate total plank time
 function calculateTotalTime() {
   const totalMinutes = Object.keys(plankedDays).length * 2;
@@ -83,6 +99,24 @@ function generateCalendar() {
     calendarGrid.appendChild(gridItem);
   }
 }
+
+function sendPlankReminder() {
+  if (Notification.permission === "granted") {
+    const today = new Date();
+    const dateKey = `${today.getFullYear()}-${
+      today.getMonth() + 1
+    }-${today.getDate()}`;
+
+    if (!plankedDays[dateKey]) {
+      new Notification("Plank Reminder", {
+        body: "Don't forget to plank today! 💪",
+        icon: "https://abutler911.github.io/twoMinutesStrong",
+      });
+    }
+  }
+}
+
+setTimeout(sendPlankReminder, 86400000);
 
 generateCalendar();
 calculateTotalTime();
