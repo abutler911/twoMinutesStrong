@@ -1,7 +1,6 @@
 const calendarGrid = document.getElementById("calendar-grid");
 const totalTimeDisplay = document.getElementById("total-time");
 
-// Set a fixed start date: February 16, 2025
 const startDate = new Date(2025, 1, 16);
 
 const plankedDays = JSON.parse(localStorage.getItem("plankedDays")) || {};
@@ -22,7 +21,6 @@ const monthNames = [
   "December",
 ];
 
-// Function to request notification permission (Only runs on button click)
 function requestNotificationPermission() {
   if ("Notification" in window) {
     Notification.requestPermission().then((permission) => {
@@ -41,7 +39,6 @@ function requestNotificationPermission() {
   }
 }
 
-// Attach event to button (Prevents errors if button doesn't exist)
 const notificationButton = document.getElementById("enable-notifications");
 if (notificationButton) {
   notificationButton.addEventListener("click", requestNotificationPermission);
