@@ -21,6 +21,14 @@ const monthNames = [
   "December",
 ];
 
+// Task states (corresponding to click levels)
+const taskStates = [
+  { color: "", label: "" },
+  { color: "purple", label: "Plank" },
+  { color: "blue", label: "Plank + Push-ups" },
+  { color: "green", label: "Plank + Push-ups + Sit-ups" },
+];
+
 function requestNotificationPermission() {
   if ("Notification" in window) {
     Notification.requestPermission().then((permission) => {
@@ -76,26 +84,33 @@ function generateCalendar() {
     // Create day box
     const gridItem = document.createElement("div");
     gridItem.classList.add("grid-item");
+
+    // Create a span for labels inside the day box
+    const taskLabel = document.createElement("span");
+    taskLabel.classList.add("task-label");
+    taskLabel.style.display = "block";
+    taskLabel.style.textAlign = "left";
+    taskLabel.style.fontSize = "8px";
+
     gridItem.innerHTML = `<strong>${dayNumber}</strong>`;
+    gridItem.appendChild(taskLabel);
 
-    // Highlight the start day (Feb 16)
-    if (i === 0) {
-      gridItem.classList.add("current-day");
-    }
+    // Restore saved task state
+    let taskLevel = plankedDays[dateKey] || 0;
+    gridItem.style.backgroundColor = taskStates[taskLevel].color;
+    taskLabel.textContent = taskStates[taskLevel].label;
 
-    // Check if the day was already planked
-    if (plankedDays[dateKey]) {
-      gridItem.classList.add("planked");
-    }
-
-    // Add click event listener
+    // Click event listener to cycle through tasks
     gridItem.addEventListener("click", () => {
-      gridItem.classList.toggle("planked");
+      taskLevel = (taskLevel + 1) % taskStates.length;
 
-      if (gridItem.classList.contains("planked")) {
-        plankedDays[dateKey] = true;
-      } else {
+      gridItem.style.backgroundColor = taskStates[taskLevel].color;
+      taskLabel.textContent = taskStates[taskLevel].label;
+
+      if (taskLevel === 0) {
         delete plankedDays[dateKey];
+      } else {
+        plankedDays[dateKey] = taskLevel;
       }
 
       localStorage.setItem("plankedDays", JSON.stringify(plankedDays));
